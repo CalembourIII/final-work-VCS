@@ -12,14 +12,14 @@ namespace Framework
     {
        private static IWebDriver driver;
 
-        public static IWebDriver GetDriver()
-        {
-            return driver;
-        }
-
         public static void CreateDriver()
         {
             driver = new ChromeDriver();
+        }
+
+        public static IWebDriver GetDriver()
+        {
+            return driver;
         }
 
         public static void CloseDriver()
