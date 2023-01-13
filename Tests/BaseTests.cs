@@ -24,7 +24,7 @@ namespace Tests
             //{
             //    Driver.TakeScreenshot(TestContext.CurrentContext.Test.MethodName);
             //}
-            Driver.CloseDriver();
+            //Driver.CloseDriver();
         }
     }
 }
