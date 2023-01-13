@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,19 +12,27 @@ namespace Framework.POM
     {
         private static string url = "https://tax.lt/skaiciuokles/atlyginimo_ir_mokesciu_skaiciuokle";
         private static string acceptCookiesLocator = "//div[@class='fc-footer-buttons']//button[@aria-label='Sutikimas']";
+        private static string selectYearDropDownLocator = "//*[@id='mokestiniai_metai']";
         private static string radioButtonAntPopieriausLocator = "";
         private static string radioButtonIRankasLocator = "//*[@id='koks_atl_2']";
         private static string enterSalaryLocator = "//*[@id='atlyginimas']";
-        private static string radioButtonPaskaiciuosSistemaLocator = "";
+        private static string radioButtonPaskaiciuosSistemaLocator = "//*[@id='paskaiciuoti_npd_1']";
         private static string radioButtonNurodysiuPatsLocator = "//*[@id='paskaiciuoti_npd_2']";
         private static string enterNpdLocator = "//*[@id='taikomas_npd']";
         private static string checkboxKaupiuPensijaiPapildomaiLocator = "//*[@id='papildomas_pensijos_kaupimas']";
+        private static string valuePajamuMokestisLocator = "//*[@id='paj_mok']";
+        private static string valueIsmokamasAtlyginimasIRankasLocator = "//*[@id='i_rankas']";
         private static string valueVisaDarboVietosKainaLocator = "//*[@id='darb_kaina']";
 
         public static void Open()
         {
             Driver.OpenPage(url);
             Common.ClickElement(acceptCookiesLocator);
+        }
+
+        public static void SelectYear(string year)
+        {
+            Common.SelectOptionByValue(selectYearDropDownLocator, year);
         }
 
         public static void ClickRadioButtonIRankas()
@@ -36,14 +45,26 @@ namespace Framework.POM
             Common.SendKeysToElement(enterSalaryLocator, salary);
         }
 
+        public static void ClickRadioButtonPaskaiciuosSistema()
+        {
+            Common.ClickElement(radioButtonPaskaiciuosSistemaLocator);
+        }
+
         public static void ClickRadioButtonNurodysiuPats()
         {
             Common.ClickElement(radioButtonNurodysiuPatsLocator);
         }
 
+        public static void ClearPreEnteredNpdSum()
+        {
+            Common.ClearInputElement(enterNpdLocator);
+        }
+
         public static void EnterNpd(string npd)
         {
             Common.SendKeysToElement(enterNpdLocator, npd);
+            //Driver.GetDriver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
+            //Driver.GetDriver().FindElement(By.XPath(enterNpdLocator)).SendKeys(Keys.Enter);
         }
 
         public static void ClickCheckboxKaupiuPensijaiPapildomai()
@@ -51,11 +72,20 @@ namespace Framework.POM
             Common.ClickElement(checkboxKaupiuPensijaiPapildomaiLocator);
         }
 
+        public static string GetValuePajamuMokestis()
+        {
+            return Common.GetElementText(valuePajamuMokestisLocator);
+        }
+
+        public static string GetValueAtlyginimasIRankas()
+        {
+            return Common.GetElementText(valueIsmokamasAtlyginimasIRankasLocator);
+        }
+
         public static string GetValueVisaDarboVietosKaina()
         {
             return Common.GetElementText(valueVisaDarboVietosKainaLocator);
         }
-
 
 
         //public static void WaitForFullValueToAppear(string keys)

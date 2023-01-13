@@ -1,10 +1,13 @@
 ﻿using Framework;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Framework
 {
@@ -15,9 +18,9 @@ namespace Framework
            return Driver.GetDriver().FindElement(By.XPath(locator));
         }
 
-        public static void FindElement(string locator, string keys)
+        public static void FindElement(string locator)
         {
-            GetElement(locator).SendKeys(keys);
+            GetElement(locator);
         }
 
         public static void ClickElement(string locator)
@@ -25,15 +28,33 @@ namespace Framework
             GetElement(locator).Click();
         }
 
-        internal static void SendKeysToElement(string locator, string value)
+        internal static void SendKeysToElement(string locator, string keys)
         {
-            GetElement(locator).SendKeys(value);
+            GetElement(locator).SendKeys(keys);
         }
 
         internal static string GetElementText(string locator)
         {
             return GetElement(locator).Text;
             //return GetElement(locator).GetAttribute("value"); // kitas budas gauti atgal teksta
+        }
+
+        internal static void ClearInputElement(string locator)
+        {
+            GetElement(locator).Clear();
+        }
+
+        internal static SelectElement GetSelectElement(string locator)
+        {
+            IWebElement element = GetElement(locator);
+            return new SelectElement(element);
+        }
+
+        internal static void SelectOptionByValue(string selectElementLocator, string value)
+        {
+            SelectElement selectElement = GetSelectElement(selectElementLocator);
+
+            selectElement.SelectByValue(value);
         }
 
         //internal static void WaitForFullValue(string locator, string keys)
