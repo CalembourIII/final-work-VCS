@@ -47,18 +47,17 @@ namespace Tests
             Mokesciu_skaiciuokle.ClickRadioButtonNurodysiuPats();
             Mokesciu_skaiciuokle.ClearPreEnteredNpdSum();
             Mokesciu_skaiciuokle.EnterNpd(npd);
-            System.Threading.Thread.Sleep(1000);
+            System.Threading.Thread.Sleep(500);
 
             //Mokesciu_skaiciuokle.WaitForFullValueToAppear(npd);
             string actualResultWithNPD = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
-            
 
-            //Mokesciu_skaiciuokle.ClickRadioButtonPaskaiciuosSistema();
+            Mokesciu_skaiciuokle.ClickRadioButtonPaskaiciuosSistema();
 
-            //string actualResultWithoutNPD = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
+            string actualResultWithoutNpd = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
 
             Assert.AreEqual(expectedResultWithNpdEntered, actualResultWithNPD);
-            //Assert.AreEqual(expectedResultWithoutNpdEntered, actualResultWithoutNPD);
+            Assert.AreEqual(expectedResultWithoutNpdEntered, actualResultWithoutNpd);
         }
 
         [Test]
