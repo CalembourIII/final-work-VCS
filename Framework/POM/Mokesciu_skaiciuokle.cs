@@ -55,5 +55,12 @@ namespace Framework.POM
         {
             return Common.GetElementText(valueVisaDarboVietosKainaLocator);
         }
+
+
+
+        //public static void WaitForFullValueToAppear(string keys)
+        //{
+        //    Common.WaitForFullValue(valuePajamuMokestisLocator, keys);
+        //}
     }
 }

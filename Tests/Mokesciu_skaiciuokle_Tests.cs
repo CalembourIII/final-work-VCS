@@ -33,5 +33,20 @@ namespace Tests
 
             Assert.IsTrue(result != null);
         }
+
+        [Test]
+
+        [Test]
+        public void PreviousYearsPensionPercentageOptions()
+        {
+            string salary = "1234";
+            //string year1 = "2019";
+            //string year2 = "2023";
+
+            Mokesciu_skaiciuokle.EnterSalary(salary);
+            Mokesciu_skaiciuokle.SelectYear(2019);
+
+
+        }
     }
 }

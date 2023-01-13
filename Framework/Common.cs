@@ -35,5 +35,11 @@ namespace Framework
             return GetElement(locator).Text;
             //return GetElement(locator).GetAttribute("value"); // kitas budas gauti atgal teksta
         }
+
+        //internal static void WaitForFullValue(string locator, string keys)
+        //{
+        //    WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(3));
+        //    wait.Until(d => d.FindElement(By.XPath(locator)).SendKeys(keys));
+        //}
     }
 }
