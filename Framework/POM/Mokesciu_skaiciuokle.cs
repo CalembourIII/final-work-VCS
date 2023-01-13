@@ -55,7 +55,7 @@ namespace Framework.POM
             Common.ClickElement(radioButtonNurodysiuPatsLocator);
         }
 
-        public static void ClearPreEnteredNpdSum()
+        public static void ClearPreEnteredNpdValue()
         {
             Common.ClearInputElement(enterNpdLocator);
         }
@@ -63,8 +63,6 @@ namespace Framework.POM
         public static void EnterNpd(string npd)
         {
             Common.SendKeysToElement(enterNpdLocator, npd);
-            //Driver.GetDriver().Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(3);
-            //Driver.GetDriver().FindElement(By.XPath(enterNpdLocator)).SendKeys(Keys.Enter);
         }
 
         public static void ClickCheckboxKaupiuPensijaiPapildomai()
@@ -87,10 +85,9 @@ namespace Framework.POM
             return Common.GetElementText(valueVisaDarboVietosKainaLocator);
         }
 
-
-        //public static void WaitForFullValueToAppear(string keys)
-        //{
-        //    Common.WaitForFullValue(valuePajamuMokestisLocator, keys);
-        //}
+        public static bool WaitForFullValueToAppear(string value)
+        {
+            return Common.WaitForFullValue(valuePajamuMokestisLocator, value);
+        }
     }
 }

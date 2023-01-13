@@ -13,40 +13,35 @@ namespace Framework
 {
     internal class Common
     {
-        private static IWebElement GetElement(string locator)
+        private static IWebElement FindElement(string locator)
         {
-           return Driver.GetDriver().FindElement(By.XPath(locator));
-        }
-
-        public static void FindElement(string locator)
-        {
-            GetElement(locator);
+            return Driver.GetDriver().FindElement(By.XPath(locator));
         }
 
         public static void ClickElement(string locator)
         {
-            GetElement(locator).Click();
+            FindElement(locator).Click();
         }
 
         internal static void SendKeysToElement(string locator, string keys)
         {
-            GetElement(locator).SendKeys(keys);
+            FindElement(locator).SendKeys(keys);
         }
 
         internal static string GetElementText(string locator)
         {
-            return GetElement(locator).Text;
+            return FindElement(locator).Text;
             //return GetElement(locator).GetAttribute("value"); // kitas budas gauti atgal teksta
         }
 
         internal static void ClearInputElement(string locator)
         {
-            GetElement(locator).Clear();
+            FindElement(locator).Clear();
         }
 
         internal static SelectElement GetSelectElement(string locator)
         {
-            IWebElement element = GetElement(locator);
+            IWebElement element = FindElement(locator);
             return new SelectElement(element);
         }
 
@@ -57,10 +52,14 @@ namespace Framework
             selectElement.SelectByValue(value);
         }
 
-        //internal static void WaitForFullValue(string locator, string keys)
-        //{
-        //    WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(3));
-        //    wait.Until(d => d.FindElement(By.XPath(locator)).SendKeys(keys));
-        //}
+        internal static bool WaitForFullValue(string locator, string value)
+        {
+            WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(5));
+            return wait.Until(ExpectedConditions.TextToBePresentInElement(FindElement(locator), value));
+        }
+        internal static string GetElementAttributeValue(string locator)
+        {
+            return FindElement(locator).GetAttribute("value");
+        }
     }
 }

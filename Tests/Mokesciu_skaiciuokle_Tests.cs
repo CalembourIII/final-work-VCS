@@ -34,6 +34,16 @@ namespace Tests
             Assert.IsTrue(result != null);
         }
 
+        /// <summary>
+        /// 
+        /// This test is uses a Wait method after value are entered, as we have to wait a moment for calculations 
+        /// on page to be visible.
+        /// 
+        /// Methods waits until expected result with NPD entered is visible. This also becomes the assertion of tests.
+        /// In case of anything else than expected result visible - the test fails.
+        /// 
+        /// </summary>
+
         [Test]
         public void IncomeTaxCalculations()
         {
@@ -45,18 +55,16 @@ namespace Tests
 
             Mokesciu_skaiciuokle.EnterSalary(salary);
             Mokesciu_skaiciuokle.ClickRadioButtonNurodysiuPats();
-            Mokesciu_skaiciuokle.ClearPreEnteredNpdSum();
+            Mokesciu_skaiciuokle.ClearPreEnteredNpdValue();
             Mokesciu_skaiciuokle.EnterNpd(npd);
-            System.Threading.Thread.Sleep(500);
 
-            //Mokesciu_skaiciuokle.WaitForFullValueToAppear(npd);
-            string actualResultWithNPD = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
+            Assert.IsTrue(Mokesciu_skaiciuokle.WaitForFullValueToAppear(expectedResultWithNpdEntered));
+            string actualResultWithNpd = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
 
             Mokesciu_skaiciuokle.ClickRadioButtonPaskaiciuosSistema();
 
             string actualResultWithoutNpd = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
 
-            Assert.AreEqual(expectedResultWithNpdEntered, actualResultWithNPD);
             Assert.AreEqual(expectedResultWithoutNpdEntered, actualResultWithoutNpd);
         }
 
@@ -64,16 +72,16 @@ namespace Tests
         public void PreviousYearsPensionPercentageOptions()
         {
             string salary = "1234";
-            //string year1 = "2019";
-            //string year2 = "2023";
+            string year1 = "2019";
+            string year2 = "2023";
 
             Mokesciu_skaiciuokle.EnterSalary(salary);
-            Mokesciu_skaiciuokle.SelectYear("2019");
+            Mokesciu_skaiciuokle.SelectYear(year1);
             Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();
 
             string ismokamasAtlyginimas2019 = Mokesciu_skaiciuokle.GetValueAtlyginimasIRankas();
 
-            Mokesciu_skaiciuokle.SelectYear("2023");
+            Mokesciu_skaiciuokle.SelectYear(year2);
             Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();
 
             string ismokamasAtlyginimas2023 = Mokesciu_skaiciuokle.GetValueAtlyginimasIRankas();
