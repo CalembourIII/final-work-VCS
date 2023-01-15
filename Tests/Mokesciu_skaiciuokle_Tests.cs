@@ -50,7 +50,8 @@ namespace Tests
             string salary = "2489,62";
             string npd = "695,00";
 
-            string expectedResultWithNpdEntered = "358,92 €";
+            //string expectedResultWithNpdEntered = "358,92 €";
+            string expectedResultWithNpdEntered = "350,92 €";
             string expectedResultWithoutNpdEntered = "484,44 €";
 
             Mokesciu_skaiciuokle.EnterSalary(salary);
