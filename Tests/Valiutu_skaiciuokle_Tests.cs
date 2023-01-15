@@ -21,28 +21,24 @@ namespace Tests
         [Test, Order(1)]
         public void DefaultValues()
         {
-            //Step 1. Check date on page if today
-            string dateOnPage = Valiutu_skaiciuokle.GetDateValue();
+            string dateOnPage = Valiutu_skaiciuokle.GetDateValue();                                                         //Step 1
             string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
             Assert.AreEqual(currentDate, dateOnPage);
 
-            //Step 2. Check if default currencies are on the page
-            List<string> defaultCurrencies = new List<string> 
+            List<string> defaultCurrencies = new List<string>                                                               //Step 2
             { "EUR", "USD", "GBP", "PLN", "NOK", "SEK", "CHF", "DKK", 
              "AUD", "CAD", "CNY", "CZK", "JPY", "RON", "TRY", "UAH" };
 
             foreach (string currency in defaultCurrencies)
             {
-                Assert.IsTrue((Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency)), $"{currency} was not visible on the page");
+                Assert.IsTrue((Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency)), 
+                    $"{currency} was not visible on the page");
             }
 
-            //Step 3. Check if "Pridėti valiutą" dropdown menu is set on default value
-            string defaultValuePridetiValiuta = "pasirink...";
+            string defaultValuePridetiValiuta = "pasirink...";                                                              //Step 3
             Assert.AreEqual(defaultValuePridetiValiuta, Valiutu_skaiciuokle.CheckPridetiValiutaDropdownValue());
 
-
-            //Step 4. Check if "skaičiai po kablelio" dropdown menu is set on default value "2"
-            string defaultValueSkaiciaiPoKablelio = "2";
+            string defaultValueSkaiciaiPoKablelio = "2";                                                                    //Step 4
             Assert.AreEqual(defaultValueSkaiciaiPoKablelio, Valiutu_skaiciuokle.CheckSkaiciaiPoKablelioDropdownValue());
         }
 
@@ -51,33 +47,36 @@ namespace Tests
         {
             List<string> currenciesToRemove = new List<string> { "EUR", "USD", "PLN" };
 
-            foreach (string currency in currenciesToRemove)
+            foreach (string currency in currenciesToRemove)                                                                 //Step 1                                            
             {
                 Valiutu_skaiciuokle.RemoveCurrencyLine(currency);
-                Assert.IsFalse((Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency)), $"{currency} was visible on the page");
+                Assert.IsFalse(Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency),                                        //Step 2
+                    $"{currency} was visible on the page");
             }
 
-            foreach (string currency in currenciesToRemove)
+            foreach (string currency in currenciesToRemove)                                                                 //Step 3
             {
                 Valiutu_skaiciuokle.SelectCurrencyToAdd(currency);
-                Assert.IsTrue((Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency)), $"{currency} was not visible on the page");
+                Assert.IsTrue(Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency),                                         //Step 4
+                    $"{currency} was not visible on the page");
             }
 
-            Valiutu_skaiciuokle.SelectCurrencyToAdd(currenciesToRemove[0]);
-            Assert.AreEqual(1, Valiutu_skaiciuokle.CheckIfCurrencyNotDoubleAdded(currenciesToRemove[0]));
+            Valiutu_skaiciuokle.SelectCurrencyToAdd(currenciesToRemove[0]);                                                 //Step 5
+            Assert.AreEqual(1, Valiutu_skaiciuokle.CheckIfCurrencyNotDoubleAdded(currenciesToRemove[0]));                   //Step 6
         }
 
         [Test, Order(3)]
-        public void NumbersAfterCommaSelection()
+        public void NumbersAfterComma()
         {
-            ///Entering values 1-by-1 because with one line it sends numbers too fast for page to calculate
+            //Entering values 1-by-1 because with one line it sends numbers too fast for page to calculate
+            //It generates very small delays which are enough for test to catch up with calculations
             string numberToTest = "100,16";
             string currencyToEnterNumber = "EUR";
             int defaultNumbersAfterComma = 2;
             int numbersAfterCommaToTest = 3;
             string currencyToCheckNumberAfterComma = "USD";
 
-            char[] numbers = numberToTest.ToCharArray();
+            char[] numbers = numberToTest.ToCharArray();                                                                    //Step 1
             foreach(char number in numbers)
             {
                 Valiutu_skaiciuokle.EnterCurrencyValue(currencyToEnterNumber, Convert.ToString(number));
@@ -86,13 +85,13 @@ namespace Tests
             string[] defaultResult = Valiutu_skaiciuokle.GetCurrencyValue(currencyToCheckNumberAfterComma).Split('.');
             int defaultNumbersAfterCommaResult = defaultResult[1].Length;
 
-            Assert.IsTrue((defaultNumbersAfterCommaResult == defaultNumbersAfterComma), 
+            Assert.IsTrue(defaultNumbersAfterCommaResult == defaultNumbersAfterComma,                                       //Step 2
                 $"Expected {defaultNumbersAfterComma} but got {defaultNumbersAfterCommaResult}");
 
-            Valiutu_skaiciuokle.SelectNumbersAfterComma(Convert.ToString(numbersAfterCommaToTest));
+            Valiutu_skaiciuokle.SelectNumbersAfterComma(Convert.ToString(numbersAfterCommaToTest));                         //Step 3
             Valiutu_skaiciuokle.ClearNumberEntered(currencyToEnterNumber);
 
-            foreach (char number in numbers)
+            foreach (char number in numbers)                                                                                //Step 4
             {
                 Valiutu_skaiciuokle.EnterCurrencyValue(currencyToEnterNumber, Convert.ToString(number));
             }
@@ -100,7 +99,7 @@ namespace Tests
             string[] result = Valiutu_skaiciuokle.GetCurrencyValue(currencyToCheckNumberAfterComma).Split('.');
             int numbersAfterCommaResult = result[1].Length;
 
-            Assert.IsTrue((numbersAfterCommaResult == numbersAfterCommaToTest), 
+            Assert.IsTrue(numbersAfterCommaResult == numbersAfterCommaToTest,                                               //Step 5
                 $"Expected {numbersAfterCommaResult} but got {numbersAfterCommaResult}");
         }
     }

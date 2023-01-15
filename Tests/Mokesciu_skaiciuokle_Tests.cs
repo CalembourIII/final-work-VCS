@@ -23,23 +23,22 @@ namespace Tests
             string salary = "1518,68";
             string npd = "500";
 
-            Mokesciu_skaiciuokle.ClickRadioButtonIRankas();
-            Mokesciu_skaiciuokle.EnterSalary(salary);
-            Mokesciu_skaiciuokle.ClickRadioButtonNurodysiuPats();
-            Mokesciu_skaiciuokle.EnterNpd(npd);
-            Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();
+            Mokesciu_skaiciuokle.ClickRadioButtonIRankas();                                                 //Step 1
+            Mokesciu_skaiciuokle.EnterSalary(salary);                                                       //Step 2
+            Mokesciu_skaiciuokle.ClickRadioButtonNurodysiuPats();                                           //Step 3
+            Mokesciu_skaiciuokle.EnterNpd(npd);                                                             //Step 4
+            Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();                                   //Step 5
 
             string result = Mokesciu_skaiciuokle.GetValueVisaDarboVietosKaina();
 
-            Assert.IsTrue((result != null), "Expected 'Any value' but got null");
+            Assert.IsTrue(result != null, "Expected 'Any value' but got null");                           //Step 6
         }
 
         /// <summary>
         /// 
         /// This test is uses a Wait method after value are entered, as we have to wait a moment for calculations 
-        /// on page to be visible.
-        /// 
-        /// Methods waits until expected result with NPD entered is visible. This also becomes the assertion of tests.
+        /// on page to be visible. Method waits until expected result with NPD entered is visible. 
+        /// This also becomes one of the the assertions of the test.
         /// In case of anything else than expected result visible - the test fails.
         /// 
         /// </summary>
@@ -53,39 +52,39 @@ namespace Tests
             string expectedResultWithNpdEntered = "358,92 €";
             string expectedResultWithoutNpdEntered = "484,44 €";
 
-            Mokesciu_skaiciuokle.EnterSalary(salary);
-            Mokesciu_skaiciuokle.ClickRadioButtonNurodysiuPats();
-            Mokesciu_skaiciuokle.ClearPreEnteredNpdValue();
-            Mokesciu_skaiciuokle.EnterNpd(npd);
+            Mokesciu_skaiciuokle.EnterSalary(salary);                                                       //Step 1
+            Mokesciu_skaiciuokle.ClickRadioButtonNurodysiuPats();                                           //Step 2
+            Mokesciu_skaiciuokle.ClearPreEnteredNpdValue();                                                 
+            Mokesciu_skaiciuokle.EnterNpd(npd);                                                             //Step 3
 
-            Assert.IsTrue(Mokesciu_skaiciuokle.WaitForFullValueToAppear(expectedResultWithNpdEntered));
+            Assert.IsTrue(Mokesciu_skaiciuokle.WaitForFullValueToAppear(expectedResultWithNpdEntered));     //Step 5
 
-            Mokesciu_skaiciuokle.ClickRadioButtonPaskaiciuosSistema();
+            Mokesciu_skaiciuokle.ClickRadioButtonPaskaiciuosSistema();                                      //STep 4
 
             string actualResultWithoutNpd = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
 
-            Assert.AreEqual(expectedResultWithoutNpdEntered, actualResultWithoutNpd);
+            Assert.AreEqual(expectedResultWithoutNpdEntered, actualResultWithoutNpd);                       //Step 5
         }
 
         [Test, Order(3)]
-        public void PreviousYearsPensionPercentageOptions()
+        public void PreviousYearsSalaryCalculation()
         {
             string salary = "1234";
             string year1 = "2019";
             string year2 = "2023";
 
-            Mokesciu_skaiciuokle.EnterSalary(salary);
-            Mokesciu_skaiciuokle.SelectYear(year1);
-            Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();
+            Mokesciu_skaiciuokle.EnterSalary(salary);                                                       //Step 1
+            Mokesciu_skaiciuokle.SelectYear(year1);                                                         //Step 2
+            Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();                                   //Step 3
 
             string ismokamasAtlyginimas2019 = Mokesciu_skaiciuokle.GetValueAtlyginimasIRankas();
 
-            Mokesciu_skaiciuokle.SelectYear(year2);
-            Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();
+            Mokesciu_skaiciuokle.SelectYear(year2);                                                         //Step 4
+            Mokesciu_skaiciuokle.ClickCheckboxKaupiuPensijaiPapildomai();                                   //Step 5
 
             string ismokamasAtlyginimas2023 = Mokesciu_skaiciuokle.GetValueAtlyginimasIRankas();
 
-            Assert.AreNotEqual(ismokamasAtlyginimas2019, ismokamasAtlyginimas2023);
+            Assert.AreNotEqual(ismokamasAtlyginimas2019, ismokamasAtlyginimas2023);                         //Step 6
         }
     }
 }
