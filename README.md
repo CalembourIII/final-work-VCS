@@ -31,14 +31,16 @@ Automatic testing training at Vilnius Coding School (2023-01-16)
       - 3 step. Check the checkbox “Kaupiu pensijai papildomai”
       - 4 step. Change selection of "Metai" dropdown menu to: 2023 (option 2)
       - 5 step. Check the checkbox “Kaupiu pensijai papildomai”
-      - 6 step. Assert if calculations in field “Išmokamas atlyginimas "į rankas" in both options is not the same
+      - 6 step. Assert if calculations in field “Išmokamas atlyginimas "į rankas" 
+                in both options is not the same
         
         
 ## :large_blue_circle: 2. Scenario: ["Valiutų skaičiuoklė"](https://tax.lt/skaiciuokles/valiutu_skaiciuokle)    
 ### #4 Case. Default Values
 #### Check if page default values are correct
       - 1 step. Check if "Valiutos kurso data" date is today
-      - 2 step. Check if EUR, USD, GBP, PLN, NOK, SEK, CHF, DKK, AUD, CAD, CNY, CZK, JPY, RON, TRY, UAH currencies are displayed
+      - 2 step. Check if EUR, USD, GBP, PLN, NOK, SEK, CHF, DKK, AUD, CAD, CNY, 
+                CZK, JPY, RON, TRY, UAH currencies are displayed
       - 3 step. Check if "Pridėti valiutą" dropdown menu is set on "pasirink..."
       - 4 step. Check if "skaičiai po kablelio" dropdown menu is set on "2"
 
