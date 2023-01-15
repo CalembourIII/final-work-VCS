@@ -69,7 +69,6 @@ namespace Framework
 
         internal static bool CheckIfElementVisible(string locator)
         {
-            //return FindElement(locator).Displayed;
             int result = FindElements(locator).Count;
             if (result == 1)
             {
