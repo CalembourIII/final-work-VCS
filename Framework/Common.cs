@@ -18,6 +18,11 @@ namespace Framework
             return Driver.GetDriver().FindElement(By.XPath(locator));
         }
 
+        internal static List<IWebElement> FindElements(string locator)
+        {
+            return Driver.GetDriver().FindElements(By.XPath(locator)).ToList();
+        }
+
         public static void ClickElement(string locator)
         {
             FindElement(locator).Click();
@@ -64,7 +69,16 @@ namespace Framework
 
         internal static bool CheckIfElementVisible(string locator)
         {
-            return FindElement(locator).Displayed;
+            //return FindElement(locator).Displayed;
+            int result = FindElements(locator).Count;
+            if (result == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         internal static string GetSelectedDropdownValue(string selectElementLocator)
