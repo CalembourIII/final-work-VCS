@@ -17,7 +17,7 @@ Automatic testing training at Vilnius Coding School (2023-01-16)
       - 6 step. Assert if calculations are made
 
 ### #2 Case. Income tax calculations
-#### Check if income tax is calculated differently, use a sum to which non-taxable income is used
+#### Check if income tax is calculated correctly
       - 1 step. Enter value "Ant popieriaus": 2489,62
       - 2 step. Select radio button "nurodysiu pats"
       - 3 step. Enter value "Taikomas NPD": 695,00
