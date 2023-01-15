@@ -31,7 +31,7 @@ namespace Tests
 
             string result = Mokesciu_skaiciuokle.GetValueVisaDarboVietosKaina();
 
-            Assert.IsTrue(result != null);
+            Assert.IsTrue((result != null), "Expected 'Any value' but got null");
         }
 
         /// <summary>
