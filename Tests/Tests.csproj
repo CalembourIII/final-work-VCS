@@ -51,6 +51,7 @@
     <Compile Include="BaseTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Mokesciu_skaiciuokle_Tests.cs" />
+    <Compile Include="Valiutu_skaiciuokle_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

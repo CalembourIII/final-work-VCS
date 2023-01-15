@@ -61,5 +61,17 @@ namespace Framework
         {
             return FindElement(locator).GetAttribute("value");
         }
+
+        internal static bool CheckIfElementVisible(string locator)
+        {
+            return FindElement(locator).Displayed;
+        }
+
+        internal static string GetSelectedDropdownValue(string selectElementLocator)
+        {
+            SelectElement selectElement = GetSelectElement(selectElementLocator);
+
+            return selectElement.SelectedOption.Text;
+        }
     }
 }

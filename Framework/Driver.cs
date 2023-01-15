@@ -17,9 +17,9 @@ namespace Framework
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("disable-notifications");
             options.AddArgument("start-maximized");
-            //options.AddArgument("headless");
+            //options.AddArgument("headless");  --start-maximized    start-maximized
             //options.AddArgument("window-size=1920,1080");
-            driver = new ChromeDriver();
+            driver = new ChromeDriver(options);
         }
 
         public static IWebDriver GetDriver()

@@ -56,6 +56,7 @@
     <Compile Include="Common.cs" />
     <Compile Include="Driver.cs" />
     <Compile Include="POM\Mokesciu_skaiciuokle.cs" />
+    <Compile Include="POM\Valiutu_skaiciuokle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
