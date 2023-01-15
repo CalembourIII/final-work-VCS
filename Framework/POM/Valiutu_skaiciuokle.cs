@@ -15,13 +15,10 @@ namespace Framework.POM
 
         private static string datePickerLocator = ("//*[@id='rate_date']");
 
-        private static string removeCurrencyEurLocator = "//input[contains(@name,'EUR')]/preceding-sibling::a[@class='icon-minus remove_line']";
-        private static string removeCurrencyUsdLocator = "//input[contains(@name,'USD')]/preceding-sibling::a[@class='icon-minus remove_line']";
-        private static string removeCurrencyPlnLocator = "//input[contains(@name,'PLN')]/preceding-sibling::a[@class='icon-minus remove_line']";
+        //private static string removeCurrencyEurLocator = "//input[contains(@name,'EUR')]/preceding-sibling::a[@class='icon-minus remove_line']";
 
         private static string pridetiValiutaDropdownLocator = "//*[@id='add_currency']";
         private static string skaiciaiPoKablelioDropdownLocator = "//*[@id='rounding']";
-
 
         private static string enterValue = "//*[@id='EUR']";
         private static string getValue = "//*[@id='USD']";
@@ -72,6 +69,18 @@ namespace Framework.POM
         public static string CheckSkaiciaiPoKablelioDropdownValue()
         {
             return Common.GetSelectedDropdownValue(skaiciaiPoKablelioDropdownLocator);
+        }
+
+        public static void SelectCurrencyToAdd(string currency)
+        {
+            Common.SelectOptionByValue(pridetiValiutaDropdownLocator, currency);
+        }
+
+        public static int CheckIfCurrencyNotDoubleAdded(string currency)
+        {
+            string locator = GenerateCurrencyLineLocator(currency);
+            return Common.CountElementsOnPage(locator);
+
         }
     }
 }

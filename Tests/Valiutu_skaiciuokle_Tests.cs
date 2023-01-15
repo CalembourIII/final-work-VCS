@@ -53,12 +53,17 @@ namespace Tests
             foreach (string currency in currenciesToRemove)
             {
                 Valiutu_skaiciuokle.RemoveCurrencyLine(currency);
-                //Assert.AreEqual(false, Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency));
                 Assert.IsFalse(Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency));
             }
 
+            foreach (string currency in currenciesToRemove)
+            {
+                Valiutu_skaiciuokle.SelectCurrencyToAdd(currency);
+                Assert.IsTrue(Valiutu_skaiciuokle.CheckIfCurrencyVisible(currency));
+            }
 
-            
+            Valiutu_skaiciuokle.SelectCurrencyToAdd(currenciesToRemove[0]);
+            Assert.AreEqual(1, Valiutu_skaiciuokle.CheckIfCurrencyNotDoubleAdded(currenciesToRemove[0]));
         }
 
         [Test]

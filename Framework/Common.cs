@@ -79,6 +79,10 @@ namespace Framework
                 return false;
             }
         }
+        internal static int CountElementsOnPage(string locator)
+        {
+            return FindElements(locator).Count;
+        }
 
         internal static string GetSelectedDropdownValue(string selectElementLocator)
         {
