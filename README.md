@@ -19,9 +19,9 @@ Automatic testing training at Vilnius Coding School (2023-01-16)
 ### #2 Case. Income tax calculations
 #### Check if income tax is calculated correctly
       - 1 step. Enter value "Ant popieriaus": 2489,62
-      - 2 step. Select radio button "nurodysiu pats"
+      - 2 step. Select radio button "nurodysiu pats" (option 1)
       - 3 step. Enter value "Taikomas NPD": 695,00
-      - 4 step. Select radio button "paskaičiuos sistema"
+      - 4 step. Select radio button "paskaičiuos sistema" (option 2)
       - 5 step. Check if income tax is calculated correctly in both options
 
 ### #3 Case. Previous year(s) salary calculation
