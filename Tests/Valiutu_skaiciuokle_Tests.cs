@@ -18,7 +18,7 @@ namespace Tests
             Valiutu_skaiciuokle.Open();
         }
 
-        [Test]
+        [Test, Order(1)]
         public void DefaultValues()
         {
             //Step 1. Check date on page if today
@@ -46,7 +46,7 @@ namespace Tests
             Assert.AreEqual(defaultValueSkaiciaiPoKablelio, Valiutu_skaiciuokle.CheckSkaiciaiPoKablelioDropdownValue());
         }
 
-        [Test]
+        [Test, Order(2)]
         public void AddRemoveCurrencies()
         {
             List<string> currenciesToRemove = new List<string> { "EUR", "USD", "PLN" };
@@ -67,7 +67,7 @@ namespace Tests
             Assert.AreEqual(1, Valiutu_skaiciuokle.CheckIfCurrencyNotDoubleAdded(currenciesToRemove[0]));
         }
 
-        [Test]
+        [Test, Order(3)]
         public void NumbersAfterCommaSelection()
         {
             ///Entering values 1-by-1 because with one line it sends numbers too fast for page to calculate

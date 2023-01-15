@@ -17,7 +17,7 @@ namespace Tests
             Mokesciu_skaiciuokle.Open();
         }
 
-        [Test]
+        [Test, Order(1)]
         public void MainFunctionalities()
         {
             string salary = "1518,68";
@@ -44,7 +44,7 @@ namespace Tests
         /// 
         /// </summary>
 
-        [Test]
+        [Test, Order(2)]
         public void IncomeTaxCalculations()
         {
             string salary = "2489,62";
@@ -67,7 +67,7 @@ namespace Tests
             Assert.AreEqual(expectedResultWithoutNpdEntered, actualResultWithoutNpd);
         }
 
-        [Test]
+        [Test, Order(3)]
         public void PreviousYearsPensionPercentageOptions()
         {
             string salary = "1234";
