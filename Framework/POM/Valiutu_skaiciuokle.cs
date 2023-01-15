@@ -15,13 +15,11 @@ namespace Framework.POM
 
         private static string datePickerLocator = ("//*[@id='rate_date']");
 
-        //private static string removeCurrencyEurLocator = "//input[contains(@name,'EUR')]/preceding-sibling::a[@class='icon-minus remove_line']";
+        private static string enterEurValueLocator = "//*[@id='EUR']";
+        private static string enterUsdValueLocator = "//*[@id='USD']";
 
         private static string pridetiValiutaDropdownLocator = "//*[@id='add_currency']";
         private static string skaiciaiPoKablelioDropdownLocator = "//*[@id='rounding']";
-
-        private static string enterValue = "//*[@id='EUR']";
-        private static string getValue = "//*[@id='USD']";
 
         public static void Open()
         {
@@ -29,20 +27,33 @@ namespace Framework.POM
             Common.ClickElement(acceptCookiesLocator);
         }
 
-        internal static string GenerateCurrencyLineLocator(string currency)
+        internal static string GenerateEnterCurrencyValueLocator(string currency)
         {
-            return $"//input[contains(@name,'{currency}')]/preceding-sibling::a[@class='icon-minus remove_line']";
+            return $"//*[@id='{currency}']";
         }
 
         public static void RemoveCurrencyLine(string currency)
         {
-            string locator = GenerateCurrencyLineLocator(currency);
+            string locator = $"//input[contains(@name,'{currency}')]/preceding-sibling::a[@class='icon-minus remove_line']";
             Common.ClickElement(locator);
         }
 
-        public static void EnterValue(string value)
+        public static void EnterCurrencyValue(string currency, string value)
         {
-            Common.SendKeysToElement(enterValue, value);
+            string locator = GenerateEnterCurrencyValueLocator(currency);
+            Common.SendKeysToElement(locator, value);
+        }
+
+        public static void ClearNumberEntered(string currency)
+        {
+            string locator = GenerateEnterCurrencyValueLocator(currency);
+            Common.ClearInputElement(locator);
+        }
+
+        public static string GetCurrencyValue(string currency)
+        {
+            string locator = GenerateEnterCurrencyValueLocator(currency);
+            return Common.GetElementAttributeValue(locator);
         }
 
         public static string GetDateValue()
@@ -50,14 +61,9 @@ namespace Framework.POM
             return Common.GetElementAttributeValue(datePickerLocator);
         }
 
-        public static string GetAttributeValue()
-        {
-            return Common.GetElementAttributeValue(getValue);
-        }
-
         public static bool CheckIfCurrencyVisible(string currency)
         {
-            string locator = GenerateCurrencyLineLocator(currency);
+            string locator = GenerateEnterCurrencyValueLocator(currency);
             return Common.CheckIfElementVisible(locator);
         }
 
@@ -78,9 +84,14 @@ namespace Framework.POM
 
         public static int CheckIfCurrencyNotDoubleAdded(string currency)
         {
-            string locator = GenerateCurrencyLineLocator(currency);
+            string locator = GenerateEnterCurrencyValueLocator(currency);
             return Common.CountElementsOnPage(locator);
 
+        }
+
+        public static void SelectNumbersAfterComma(string number)
+        {
+            Common.SelectOptionByValue(skaiciaiPoKablelioDropdownLocator, number);
         }
     }
 }

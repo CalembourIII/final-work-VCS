@@ -50,6 +50,7 @@ namespace Tests
         public void AddRemoveCurrencies()
         {
             List<string> currenciesToRemove = new List<string> { "EUR", "USD", "PLN" };
+
             foreach (string currency in currenciesToRemove)
             {
                 Valiutu_skaiciuokle.RemoveCurrencyLine(currency);
@@ -67,25 +68,32 @@ namespace Tests
         }
 
         [Test]
-        public void MaxNumbersAfterCommaSelection()
+        public void NumbersAfterCommaSelection()
         {
-            Valiutu_skaiciuokle.EnterValue("100");
-            System.Threading.Thread.Sleep(3000);
+            ///Entering values 1-by-1 because with one line it sends numbers too fast for page to calculate
+            string numberToTest = "10";
+            string currencyToEnterNumber = "EUR";
+            int numbersAfterCommaToTest = 3;
+            string currencyToCheckNumberAfterComma = "USD";
 
-            string result = Valiutu_skaiciuokle.GetAttributeValue();
+            char[] numbers = numberToTest.ToCharArray();
+            foreach(char number in numbers)
+            {
+                Valiutu_skaiciuokle.EnterCurrencyValue(currencyToEnterNumber, Convert.ToString(number));
+            }
 
-            //double result = Valiutu_skaiciuokle.GetValueDouble();
-            //string[] number = Valiutu_skaiciuokle.GetValueString().Split('.');
+            Valiutu_skaiciuokle.SelectNumbersAfterComma(Convert.ToString(numbersAfterCommaToTest));
+            Valiutu_skaiciuokle.ClearNumberEntered(currencyToEnterNumber);
 
-            ////string[] parts = number.ToString().Split('.');
+            foreach (char number in numbers)
+            {
+                Valiutu_skaiciuokle.EnterCurrencyValue(currencyToEnterNumber, Convert.ToString(number));
+            }
 
-            //int skaiciaiPoKablelio = number[0].Length;
+            string[] result = Valiutu_skaiciuokle.GetCurrencyValue(currencyToCheckNumberAfterComma).Split('.');
+            int numbersAfterComma = result[1].Length;
 
-            //Assert.IsTrue(skaiciaiPoKablelio == 2);
-
-            Assert.IsTrue(result == "107.72");
-
+            Assert.IsTrue(numbersAfterComma == numbersAfterCommaToTest);
         }
-
     }
 }
