@@ -36,7 +36,6 @@ namespace Framework
         internal static string GetElementText(string locator)
         {
             return FindElement(locator).Text;
-            //return GetElement(locator).GetAttribute("value"); // kitas budas gauti atgal teksta
         }
 
         internal static void ClearInputElement(string locator)

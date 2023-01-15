@@ -15,9 +15,6 @@ namespace Framework.POM
 
         private static string datePickerLocator = ("//*[@id='rate_date']");
 
-        private static string enterEurValueLocator = "//*[@id='EUR']";
-        private static string enterUsdValueLocator = "//*[@id='USD']";
-
         private static string pridetiValiutaDropdownLocator = "//*[@id='add_currency']";
         private static string skaiciaiPoKablelioDropdownLocator = "//*[@id='rounding']";
 
