@@ -71,7 +71,7 @@ namespace Tests
         public void NumbersAfterCommaSelection()
         {
             ///Entering values 1-by-1 because with one line it sends numbers too fast for page to calculate
-            string numberToTest = "10";
+            string numberToTest = "100,15";
             string currencyToEnterNumber = "EUR";
             int numbersAfterCommaToTest = 3;
             string currencyToCheckNumberAfterComma = "USD";

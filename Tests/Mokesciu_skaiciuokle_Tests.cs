@@ -50,8 +50,7 @@ namespace Tests
             string salary = "2489,62";
             string npd = "695,00";
 
-            //string expectedResultWithNpdEntered = "358,92 €";
-            string expectedResultWithNpdEntered = "350,92 €";
+            string expectedResultWithNpdEntered = "358,92 €";
             string expectedResultWithoutNpdEntered = "484,44 €";
 
             Mokesciu_skaiciuokle.EnterSalary(salary);
@@ -60,7 +59,6 @@ namespace Tests
             Mokesciu_skaiciuokle.EnterNpd(npd);
 
             Assert.IsTrue(Mokesciu_skaiciuokle.WaitForFullValueToAppear(expectedResultWithNpdEntered));
-            string actualResultWithNpd = Mokesciu_skaiciuokle.GetValuePajamuMokestis();
 
             Mokesciu_skaiciuokle.ClickRadioButtonPaskaiciuosSistema();
 
