@@ -1,13 +1,9 @@
-﻿using Framework;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Framework
 {
@@ -61,6 +57,7 @@ namespace Framework
             WebDriverWait wait = new WebDriverWait(Driver.GetDriver(), TimeSpan.FromSeconds(5));
             return wait.Until(ExpectedConditions.TextToBePresentInElement(FindElement(locator), value));
         }
+
         internal static string GetElementAttributeValue(string locator)
         {
             return FindElement(locator).GetAttribute("value");
@@ -78,6 +75,7 @@ namespace Framework
                 return false;
             }
         }
+
         internal static int CountElementsOnPage(string locator)
         {
             return FindElements(locator).Count;

@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Framework.POM
+﻿namespace Framework.POM
 {
     public class Valiutu_skaiciuokle
     {
@@ -83,7 +75,6 @@ namespace Framework.POM
         {
             string locator = GenerateEnterCurrencyValueLocator(currency);
             return Common.CountElementsOnPage(locator);
-
         }
 
         public static void SelectNumbersAfterComma(string number)
